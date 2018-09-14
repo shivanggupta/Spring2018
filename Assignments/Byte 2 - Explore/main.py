@@ -32,15 +32,16 @@ API_KEY = 'AIzaSyBRQmEGcUEpTTdDXsvUmmcN2y5LRGGmig8'
 service = build('fusiontables', 'v1', developerKey=API_KEY)
 
 # This is the table id for the fusion table
-TABLE_ID = '1ICVpOqRUHcKCH9J_GL-w4e-OCCFNY79gAuwx9Fye'
+TABLE_ID = '1p9w2XmvtTaMKcLGoqNXCXuWax94_vE21Pdn2fjRY'
 
 # This is the default columns for the query
 query_cols = []
-query_values = ["10"] #Change to be the value(s) you're querying in the column you've specified
+query_values = ["1"] #Changed to 1
 
 # Import the Flask Framework
-from flask import Flask, request
-app = Flask(__name__)
+from flask import Flask, request, url_for
+# Changed to allow use of images
+app = Flask(__name__, static_url_path='/static')
 
 def get_all_data(query):
     #Example from the assignment instructions
@@ -72,9 +73,9 @@ def make_query(cols, values, limit):
     string_values = string_values[2:len(string_values)]
     
     #Change this query to have your corresponding column (in our soccer example, the column for our WHERE is Scorer).
-    query = "SELECT " + string_cols + " FROM " + TABLE_ID + " WHERE rank_change > '" + string_values + "'"
+    query = "SELECT " + string_cols + " FROM " + TABLE_ID + " WHERE total_goals > '" + string_values + "'"
 
-    query = query + " LIMIT " + str(limit)
+    query = query + " ORDER BY total_goals DESC" + " LIMIT " + str(limit) 
 
     logging.info(query)
     # query = "SELECT * FROM " + TABLE_ID + " WHERE  Scorer = 'Forlan' LIMIT 5"
@@ -88,7 +89,7 @@ def make_query(cols, values, limit):
 def index():
     template = JINJA_ENVIRONMENT.get_template('templates/index.html')
     request = service.column().list(tableId=TABLE_ID)
-    res = get_all_data(make_query([], query_values, 5)) #5 is our limit we're passing in
+    res = get_all_data(make_query([], query_values, 50)) #Changed limit here to 50
     logging.info('allheaders')
     return template.render(columns=res['columns'], rows = res['rows'] )
 

@@ -46,39 +46,83 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
 	<h1>Quality: About This Data Set</h1>
-        <p>Write a brief summary about the quality of the data set here</a></p>
+        <p>This is a high quality data set that required minimal cleaning of data. It did however require some manipulation to get proper results from during 
+        exploratory analysis. The data was explored in Trifacta Wrangler and Numbers. </a></p>
       </div>
 
     
       <div class="page-header">
+      	<div class ="row">
 			<h2>Is the data complete?</h2>
 			
 			<p>If not, what is missing and what concerns does it raise?
 			What is your evidence for this?</p>
 			
-			<ul> <li>The data is divided into two tables, results and stats. Each table contains information about 39 teams that have played in the 
-			EPL since 2006.</li>
-			<li>While the tables are complete and contain all relevant data from 2006 onwards, they are missing all data from 1992 to 2006.</li>
-			<li>This data cannot be completed using any of the normal estimation practices since it does not follow a fixed pattern, however, it is not 
-			needed to answer many interesting questions about the EPL since 2006. No inferences can be made about the EPL as a whole because of the 14 years of missing data.</li>
+			<ul> 
+				<li>The data is divided into two tables, results and stats. Each table contains information about 39 teams that have played in the 
+				EPL since 2006.</li>
+				<li>38 matches are played in each season, as such the number of games in table also shows completeness. (Total 4560 which is equal to 38 x 12)</li>
+				<li>While the tables are complete and contain all relevant data from 2006 onwards, they are missing all data from 1992 to 2006.</li>
+				<li>This data cannot be completed using any of the normal estimation practices since it does not follow a fixed pattern, however, it is not 
+				needed to answer many interesting questions about the EPL since 2006. No inferences can be made about the EPL as a whole because of the 14 years of missing data.</li>
+				<br/><li>To  verify that the data was complete, summary graphs on Wrangler were used to verify that there were no cells with missing data.</li>
+				<li>The total values for the team columns was then compared to the list available on the official EPL <a href="https://www.premierleague.com/results">website.</a> This proved that the data was complete.</li>
+				<li>The image below shows the Wrangler summary graphs for the results table. The stats table is not used in this project.</li>
 			</ul>
 			
-			<img src="{{url_for('static', filename='ayrton_senna_movie_wallpaper_by_bashgfx-d4cm6x6.jpg')}}"></img>
-			
+			<div class="col-md-12">
+				<img class= "img-responsive" alt="wrangler summary" src="static/images/wrangler.png"></img>
+			</div>	
+		</div>
 	
       </div>
       
       <div class="page-header">
-	<h2>Is the data coherent?</h2>
-	<p>Does it make sense relative to itself? Does it match your
-	expectations? Are the distributions sensible? What is your
-	evidence for this?</p>
+			<h2>Is the data coherent?</h2>
+			<p>Does it make sense relative to itself? Does it match your
+			expectations? Are the distributions sensible? What is your
+			evidence for this?</p>
+			
+			<ul> 
+				
+				<li>The data is coherent and makes sense relative to itself and to expectations.</li>
+				<li>As seen in the summary information above, there are 39 teams in the data which has been verified. </li>
+				<li>The goals scored at home range from <strong> 0-9</strong> and away goals range from <strong>0-7</strong>. This matches intuitive expectations.</li>
+				<li>There are only 3 possible outcomes in a game, win, draw or lose. It can be seen above that no extra values are included in the data. </li>
+				<br/>
+				<li>To add more relevant data a total_goals column was made that aggregated home and away to show total number of goals in a match. </li>
+				<li>The distributions make sense as there are some teams (considered the better teams) that have never been relegated (meaning they have never left the EPL) 
+				and as such there will be more entries for the better known teams like Manchester United and Liverpool. </li>
+				<li>In addition to the wrangler summaries, the data at the EPL website and on <a href="https://en.wikipedia.org/wiki/List_of_Premier_League_clubs">Wikipedia </a>was useful in determining coherency. </li>
+				<li>Further, the following details were captured from exploratory analysis:</li>
+				
+			</ul>
+			
+			<div class="col-md-12">
+				<img class= "img-responsive" alt="numbers summary" src="static/images/numbers.png"></img>
+			</div>	
+	
+	
+	
+	
       </div>
 
       <div class="page-header">
-	<h2>Is the data correct?</h2>
-	<p>What aspects of this data can you verify? How did you do so? What did
-	you find?</p>
+			<h2>Is the data correct?</h2>
+			<p>What aspects of this data can you verify? How did you do so? What did
+			you find?</p>
+			
+			<ul> 
+				
+				<li>The data has been sourced directly from the EPL website, as such it is verified by the original owner and authors of the data.</li>
+				<li>It is correct and to verify this, a random sample of rows was compared to news data to ensure correctness. </li>
+				<li>Any obvious outliers (such as the single highest score) were verified against news data available online to ensure the data was correct.  </li>
+
+				
+			</ul>
+			
+			
+
       </div>
 
     </div> <!-- /container -->

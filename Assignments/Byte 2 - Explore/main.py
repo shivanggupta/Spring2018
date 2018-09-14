@@ -24,7 +24,8 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 # This API key is provided by google as described in the tutorial
-API_KEY = 'AIzaSyC8ZL4N78KidFv_ZVt8od8aH0Ietxu2A7s'
+API_KEY = 'AIzaSyBRQmEGcUEpTTdDXsvUmmcN2y5LRGGmig8'
+
 
 # This uses discovery to create an object that can talk to the 
 # fusion tables API using the developer key
@@ -35,7 +36,7 @@ TABLE_ID = '1ICVpOqRUHcKCH9J_GL-w4e-OCCFNY79gAuwx9Fye'
 
 # This is the default columns for the query
 query_cols = []
-query_values = ['Forlan'] #Change to be the value(s) you're querying in the column you've specified
+query_values = ["10"] #Change to be the value(s) you're querying in the column you've specified
 
 # Import the Flask Framework
 from flask import Flask, request
@@ -43,7 +44,7 @@ app = Flask(__name__)
 
 def get_all_data(query):
     #Example from the assignment instructions
-    #query = "SELECT * FROM " + TABLE_ID + " WHERE  Scorer = 'Forlan' LIMIT 2"
+    #query = "SELECT * FROM " + TABLE_ID + " WHERE  rank_change > 10 LIMIT 5"
     #response = service.query().sql(sql=query).execute()
     #logging.info(response['columns'])
     #logging.info(response['rows'])
@@ -71,7 +72,7 @@ def make_query(cols, values, limit):
     string_values = string_values[2:len(string_values)]
     
     #Change this query to have your corresponding column (in our soccer example, the column for our WHERE is Scorer).
-    query = "SELECT " + string_cols + " FROM " + TABLE_ID + " WHERE Scorer = '" + string_values + "'"
+    query = "SELECT " + string_cols + " FROM " + TABLE_ID + " WHERE rank_change > '" + string_values + "'"
 
     query = query + " LIMIT " + str(limit)
 
